@@ -1,0 +1,28 @@
+name: Upload to Google Sheets
+
+on:
+  schedule:
+    - cron: "0 9 * * *"  # Запуск каждый день в 9:00 UTC
+  workflow_dispatch:  # Позволяет запуск вручную из интерфейса GitHub
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout репозиторий
+        uses: actions/checkout@v4
+
+      - name: Установка Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Установка зависимостей
+        run: pip install gspread oauth2client pandas
+
+      - name: Создание credentials.json из Secret
+        run: echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials.json
+
+      - name: Запуск скрипта
+        run: python upload_to_gsheet.py
