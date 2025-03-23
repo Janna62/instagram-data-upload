@@ -3,7 +3,7 @@ name: Upload to Google Sheets
 on:
   schedule:
     - cron: '0 9 * * *'  # Запуск каждый день в 9:00 UTC
-  workflow_dispatch:
+ workflow_dispatch:
 
 jobs:
   upload:
