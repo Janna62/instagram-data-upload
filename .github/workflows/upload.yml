@@ -54,4 +54,4 @@ jobs:
         run: echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials.json
 
       - name: Запуск скрипта
-        run: python upload_to_gsheet.py
+        run: python update_instagram_data.py
